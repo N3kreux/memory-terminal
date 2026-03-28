@@ -55,27 +55,24 @@ body::before {
   pointer-events: none;
 }
 
-/* Container */
+/* Wrapper for ASCII */
 .ascii-wrapper {
   width: 100%;
-  overflow-x: auto;       /* horizontal scroll only if needed */
-  white-space: nowrap;    /* keeps lines intact */
+  overflow-x: auto;       /* allows horizontal scrolling on mobile */
+  padding-left: 10px;     /* some space from the edge */
+  background-color: #0a0a0f; /* optional terminal background */
 }
 
 /* ASCII text */
 .ascii-title {
   font-family: 'Share Tech Mono', monospace;
-  font-size: 0.8rem;       /* adjust to fit most screens */
-  line-height: 1;          /* compact lines */
+  font-size: 0.8rem;      /* readable size */
+  line-height: 1;         /* tight lines */
+  white-space: pre;       /* preserves all spaces */
   color: #ff00ff;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff, 0 0 5px #ff00ff;
   animation: glitch 1s infinite;
-  text-align: left;        /* left align text */
-  white-space: pre;        /* preserve all spaces */
-}
-
-.ascii-wrapper {
-  padding-left: 10px;
+  text-align: left;       /* left align for retro terminal look */
 }
 
 /* Mobile adjustment */

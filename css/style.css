@@ -113,3 +113,22 @@ button:hover {
   text-align: center;
   margin-top: 20vh;
 }
+
+/* For all PNG/ASCII art images */
+.ascii-photo-img {
+  width: 100%;
+  max-width: 600px;
+  margin: 20px 0;
+  display: block;
+  border: 2px solid #00ffcc;
+  box-shadow: 0 0 10px #00ffcc;
+  image-rendering: pixelated; /* for crisp edges on pixel art */
+}
+
+/* For all videos */
+.ascii-video {
+  width: 100%;
+  margin: 20px 0;
+  border: 2px solid #00ffcc;
+  box-shadow: 0 0 10px #00ffcc;
+}

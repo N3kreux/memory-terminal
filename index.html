@@ -1,48 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Memory Terminal</title>
-<style>
-body {
-  margin: 0;
-  padding: 30px;
-  background: #07070f;
-  color: #00ff9f;
-  font-family: "Courier New", monospace;
-}
-a {
-  color: #00ff9f;
-  text-decoration: none;
-  margin: 8px 0;
-  display: block;
-}
-a:hover { 
-  color: #ff00ff;
-}
-</style>
+  <title>Memory Terminal</title>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+  <h1>&gt; MEMORY TERMINAL</h1>
+  <p>&gt; Access granted, Cariño 💖</p>
 
-<h2>&gt; MEMORY TERMINAL</h2>
-<p>&gt; access granted, [HIS NAME]</p>
+  <div class="panel">
+    <a href="memories.html">[1] Memories</a>
+    <a href="lonely.html">[2] Open When Lonely</a>
+    <a href="roadtrip.html">[3] Roadtrip Mode</a>
+    <a href="secret.html">[4] Secret Message</a>
+  </div>
 
-<a href="memories.html">[1] Memories</a>
-<a href="lonely.html">[2] Open When Lonely</a>
-<a href="roadtrip.html">[3] Roadtrip Mode</a>
-<a href="secret.html">[4] Secret Message</a>
+  <p>&gt; or type command: <strong>love_you</strong></p>
 
-<p>&gt; try typing: <strong>love_you</strong></p>
-
-<script>
-document.addEventListener('keypress', function(e){
-    if(e.key === 'Enter'){
-        const cmd = prompt('Enter command:');
-        if(cmd && cmd.toLowerCase() == 'love_you'){
-            window.location = 'secret.html';
+  <script>
+    document.addEventListener('keypress', function(e){
+      if(e.key === 'Enter'){
+        const command = prompt('Enter command:');
+        if(command && command.toLowerCase() === 'love_you'){
+          window.location = 'secret.html';
         }
-    }
-});
-</script>
-
+      }
+    });
+  </script>
 </body>
 </html>

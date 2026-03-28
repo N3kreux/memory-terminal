@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Memory Terminal</title>
+<style>
+body {
+  margin: 0;
+  padding: 30px;
+  background: #07070f;
+  color: #00ff9f;
+  font-family: "Courier New", monospace;
+}
+a {
+  color: #00ff9f;
+  text-decoration: none;
+  margin: 8px 0;
+  display: block;
+}
+a:hover { 
+  color: #ff00ff;
+}
+</style>
+</head>
+<body>
+
+<h2>&gt; MEMORY TERMINAL</h2>
+<p>&gt; access granted, [HIS NAME]</p>
+
+<a href="memories.html">[1] Memories</a>
+<a href="lonely.html">[2] Open When Lonely</a>
+<a href="roadtrip.html">[3] Roadtrip Mode</a>
+<a href="secret.html">[4] Secret Message</a>
+
+<p>&gt; try typing: <strong>love_you</strong></p>
+
+<script>
+document.addEventListener('keypress', function(e){
+    if(e.key === 'Enter'){
+        const cmd = prompt('Enter command:');
+        if(cmd && cmd.toLowerCase() == 'love_you'){
+            window.location = 'secret.html';
+        }
+    }
+});
+</script>
+
+</body>
+</html>

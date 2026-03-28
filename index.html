@@ -1,12 +1,11 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <title>Memory Terminal</title>
-<link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+
 <div id="boot-screen">
   <p id="boot-text"></p>
 </div>
@@ -16,20 +15,16 @@
 </div>
 
 <div id="main-content" style="display:none;">
-  <!-- Your ASCII title goes here -->
-  <div class="ascii-wrapper">
-    <pre class="ascii-title">
   <div class="ascii-wrapper">
     <pre class="ascii-title">
 .-.-. .-.-. .-.-. .-.-. .-.-. .-.-.      .-.-. .-.-. .-.-. .-.-. .-.-. .-.-. .-.-. .-.-. 
 ( M .'( e .'( m .'( o .'( r .'( y .'.-.-.( T .'( e .'( r .'( m .'( i .'( n .'( a .'( l .' 
  `.(   `.(   `.(   `.(   `.(   `.(  '._.' `.(   `.(   `.(   `.(   `.(   `.(   `.(   `.(   
                                                                                           
-</pre></div><p>&gt; Access granted, Cariño 💖</p>
+ </pre>
+  </div>
 
-<audio id="bg-audio">
-  <source src="audio/love-message.mp3" type="audio/mpeg">
-</audio>
+  <p>&gt; Access granted, Cariño 💖</p>
 
   <div class="panel">
     <a href="memories.html">[1] Memories</a>
@@ -39,38 +34,41 @@
   </div>
 
   <p>&gt; Or type command: <strong>love_you</strong></p>
+</div>
 
-  <script>
-    document.addEventListener('keypress', function(e){
-      if(e.key === 'Enter'){
-        const command = prompt('Enter command:');
-        if(command && command.toLowerCase() === 'love_you'){
-          window.location = 'secret.html';
-        }
-      }
-    });
-  </script>
+<!-- AUDIO ELEMENTS -->
+<audio id="bg-audio">
+  <source src="audio/love-message.mp3" type="audio/mpeg">
+</audio>
 
-  <script>
+<audio id="type-sound" src="audio/type.mp3"></audio>
+
+<!-- SCRIPTS -->
+<script>
+// Boot sequence typing
 const bootLines = [
-  "> Initializing System...",
-  "> Scanning Device...",
-  "> Checking Identity...",
-  "> Recognizing: Cariño...",
-  "> Accessing Memory Core...",
+  "> Initializing system...",
+  "> Scanning device...",
+  "> Checking identity...",
+  "> Accessing memory core...",
   "> Ready."
 ];
 
-let i = 0;
-let j = 0;
+let i = 0;  // line
+let j = 0;  // char
 let currentLine = "";
 const speed = 40;
 
 function typeBoot() {
+  const typeAudio = document.getElementById("type-sound"); // make sure audio exists now
   if (i < bootLines.length) {
     if (j < bootLines[i].length) {
       currentLine += bootLines[i].charAt(j);
       document.getElementById("boot-text").innerHTML = currentLine;
+
+      typeAudio.currentTime = 0;
+      typeAudio.play().catch(() => {}); // ignore autoplay errors
+
       j++;
       setTimeout(typeBoot, speed);
     } else {
@@ -80,24 +78,18 @@ function typeBoot() {
       setTimeout(typeBoot, 500);
     }
   } else {
-    // Show confirm button after boot
     document.getElementById("auth-screen").style.display = "block";
   }
 }
 
 typeBoot();
-</script>
 
-<script>
+// Confirm identity function
 function confirmIdentity() {
-  // Hide boot + button
   document.getElementById("boot-screen").style.display = "none";
   document.getElementById("auth-screen").style.display = "none";
-
-  // Show main content
   document.getElementById("main-content").style.display = "block";
 
-  // Play audio
   const audio = document.getElementById("bg-audio");
   audio.play().catch(() => {});
 }

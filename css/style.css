@@ -55,36 +55,29 @@ body::before {
   pointer-events: none;
 }
 
+/* Container */
+.ascii-wrapper {
+  width: 100%;
+  overflow-x: auto;       /* horizontal scroll only if needed */
+  white-space: nowrap;    /* keeps lines intact */
+}
+
 /* ASCII text */
 .ascii-title {
   font-family: 'Share Tech Mono', monospace;
-  font-size: clamp(0.5rem, 2.5vw, 1rem); /* responsive scaling */
-  line-height: 1;
-  white-space: pre;         /* preserves all spaces and line breaks */
+  font-size: 0.8rem;       /* adjust to fit most screens */
+  line-height: 1;          /* compact lines */
   color: #ff00ff;
   text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff, 0 0 5px #ff00ff;
   animation: glitch 1s infinite;
-  max-width: 100%;
-  overflow: visible;        /* don’t clip content */
-  /* REMOVE overflow-wrap and word-break */
+  text-align: left;        /* left align text */
+  white-space: pre;        /* preserve all spaces */
 }
 
-.ascii-wrapper {
-  display: flex;
-  justify-content: center;
-  width: 100%;
-  overflow: hidden;         /* hides scroll bars */
-}
-
-.ascii-title {
-  transform-origin: top center;   /* scale from top center */
-  transform: scale(0.6);          /* adjust scale for mobile */
-}
-
-/* Mobile adjustment with media query */
+/* Mobile adjustment */
 @media (max-width: 600px) {
   .ascii-title {
-    transform: scale(0.4);        /* smaller scale for phones */
+    font-size: 0.6rem;     /* smaller font for phones */
   }
 }
 

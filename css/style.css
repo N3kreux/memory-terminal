@@ -74,6 +74,10 @@ body::before {
   white-space: pre;        /* preserve all spaces */
 }
 
+.ascii-wrapper {
+  padding-left: 10px;
+}
+
 /* Mobile adjustment */
 @media (max-width: 600px) {
   .ascii-title {

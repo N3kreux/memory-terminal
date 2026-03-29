@@ -91,8 +91,11 @@ function confirmIdentity() {
   document.getElementById("auth-screen").style.display = "none";
   document.getElementById("main-content").style.display = "block";
 
-  const audio = document.getElementById("bg-audio");
-  audio.play().catch(() => {});
+  const bgAudio = document.getElementById("bg-audio");
+  bgAudio.loop = true;
+  bgAudio.play().catch(() => {
+    console.log("Autoplay blocked, user must interact first")
+});
 }
 </script>
 

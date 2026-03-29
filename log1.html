@@ -6,12 +6,17 @@
 </head>
 <body>
 
+<!--Audio Elements-->>
+<audio id="bg-music" loop>
+  <source src="audio/logs-music.mp3" type="audio/mpeg">
+</audio>
+
 <h2>LOG 001 – INITIALIZATION (3/28/2026)</h2>
 
-<p class="log-text">
+<p id="typed-text" class="log-text"></p>
 
-LOVER'S LOG 001
-
+<script>
+const text = `LOVER'S LOG 001
 If you're reading this, it means you found this part of the system…  
 which means you kept exploring. That’s very you.
 
@@ -26,10 +31,52 @@ You deserve the world, and this is just the start of what I hope to give you. Ou
 the palm of your hand, where you can always find a piece of me, and a piece of us.
 
 You matter to me in ways I’m still learning how to explain…
-but I hope these logs help show it, piece by piece.
-</p>
+but I hope these logs help show it, piece by piece.`;
+
+let index = 0;
+const speed = 30; // typing speed (lower = faster)
+
+function typeWriter() {
+  if (index < text.length) {
+    document.getElementById("typed-text").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, speed);
+  }
+  if (index === text.length) {
+  document.getElementById("typed-text").innerHTML += "\n\n[END OF LOG]";
+}
+
+window.onload = typeWriter;
+</script>
+
+if (index === text.length) {
+  document.getElementById("typed-text").innerHTML += "\n\n[END OF LOG]";
+}
+}
 
 <a href="logs.html">← Back to Logs</a>
+
+<script>
+const music = document.getElementById("bg-music");
+
+// Check if music was already playing
+if (localStorage.getItem("musicPlaying") === "true") {
+  music.currentTime = localStorage.getItem("musicTime") || 0;
+  music.play();
+}
+
+// Start music on first interaction
+document.body.addEventListener("click", () => {
+  if (!music.paused) return;
+  music.play();
+  localStorage.setItem("musicPlaying", "true");
+});
+
+// Save playback time before leaving page
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("musicTime", music.currentTime);
+});
+</script>
 
 </body>
 </html>

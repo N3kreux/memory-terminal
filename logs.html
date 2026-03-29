@@ -21,5 +21,28 @@
 
 <a href="index.html">← Return</a>
 
+<script>
+// Background music
+const music = document.getElementById("log-music");
+
+// Check if music was already playing
+if (localStorage.getItem("musicPlaying") === "true") {
+  music.currentTime = localStorage.getItem("musicTime") || 0;
+  music.play();
+}
+
+// Start music on first click
+document.body.addEventListener("click", () => {
+  if (!music.paused) return;
+  music.play();
+  localStorage.setItem("musicPlaying", "true");
+});
+
+// Save playback time before leaving page
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("musicTime", music.currentTime);
+});
+</script>
+
 </body>
 </html>

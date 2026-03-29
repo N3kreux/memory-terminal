@@ -38,20 +38,16 @@
 </div>
 
 <!-- AUDIO ELEMENTS -->
-<audio id="bg-audio">
-  <source src="audio/background.mp3" type="audio/mpeg">
-</audio>
-
 <audio id="bg-audio" src="audio/background.mp3" preload="auto"></audio>
 
 <!-- SCRIPTS -->
 <script>
 // Boot sequence typing
 const bootLines = [
-  "> Initializing system...",
-  "> Scanning device...",
-  "> Checking identity...",
-  "> Accessing memory core...",
+  "> Initializing System...",
+  "> Scanning Device...",
+  "> Checking Identity...",
+  "> Accessing Memory Core...",
   "> Ready."
 ];
 
@@ -67,9 +63,11 @@ function typeBoot() {
       currentLine += bootLines[i].charAt(j);
       document.getElementById("boot-text").innerHTML = currentLine;
 
-      typeAudio.currentTime = 0;
-      typeAudio.play().catch(() => {}); // ignore autoplay errors
-
+      if(typeAudio) {
+        typeAudio.currentTime = 0;
+        typeAudio.play().catch(() => {}); // ignore autoplay errors
+      }
+      
       j++;
       setTimeout(typeBoot, speed);
     } else {
@@ -91,11 +89,13 @@ function confirmIdentity() {
   document.getElementById("auth-screen").style.display = "none";
   document.getElementById("main-content").style.display = "block";
 
-  const bgAudio = document.getElementById("bg-audio");
-  bgAudio.loop = true;
-  bgAudio.play().catch(() => {
-    console.log("Autoplay blocked, user must interact first")
-});
+   const bgAudio = document.getElementById("bg-audio");
+  if(bgAudio) {
+    bgAudio.loop = true;
+    bgAudio.play().catch(() => {
+      console.log("Autoplay blocked. User must interact to start audio.");
+    });
+  }
 }
 </script>
 

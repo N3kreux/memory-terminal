@@ -7,7 +7,7 @@
 <body>
 
 <!--Audio Elements-->
-<audio id="bg-music" loop>
+<audio id="log-music" loop>
   <source src="audio/logs-music.mp3" type="audio/mpeg">
 </audio>
 
@@ -16,6 +16,7 @@
 <p id="typed-text" class="log-text"></p>
 
 <script>
+// Typing effect
 const text = `LOVER'S LOG 001
 If you're reading this, it means you found this part of the system…  
 which means you kept exploring. That’s very you.
@@ -34,30 +35,28 @@ You matter to me in ways I’m still learning how to explain…
 but I hope these logs help show it, piece by piece.`;
 
 let index = 0;
-const speed = 30; // typing speed (lower = faster)
+const speed = 30; // typing speed
 
 function typeWriter() {
   if (index < text.length) {
     document.getElementById("typed-text").innerHTML += text.charAt(index);
     index++;
     setTimeout(typeWriter, speed);
+  } else {
+    // Add END OF LOG when typing is complete
+    document.getElementById("typed-text").innerHTML += "\n\n[END OF LOG]";
   }
-  if (index === text.length) {
-  document.getElementById("typed-text").innerHTML += "\n\n[END OF LOG]";
 }
 
-if (index === text.length) {
-  document.getElementById("typed-text").innerHTML += "\n\n[END OF LOG]";
-}
-}
-
+// Start typing when page loads
 window.onload = typeWriter;
 </script>
 
 <a href="logs.html">← Back to Logs</a>
 
 <script>
-const music = document.getElementById("bg-music");
+// Background music
+const music = document.getElementById("log-music");
 
 // Check if music was already playing
 if (localStorage.getItem("musicPlaying") === "true") {
@@ -65,7 +64,7 @@ if (localStorage.getItem("musicPlaying") === "true") {
   music.play();
 }
 
-// Start music on first interaction
+// Start music on first click
 document.body.addEventListener("click", () => {
   if (!music.paused) return;
   music.play();

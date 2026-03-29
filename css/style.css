@@ -132,3 +132,25 @@ button:hover {
   border: 2px solid #00ffcc;
   box-shadow: 0 0 10px #00ffcc;
 }
+
+.log-list a {
+  display: block;
+  color: #00ff9f;
+  text-decoration: none;
+  margin: 10px 0;
+}
+
+.log-list a:hover {
+  text-shadow: 0 0 5px #00ff9f;
+}
+
+.log-text {
+  font-family: monospace;
+  white-space: pre-line;
+  color: #00ff9f;
+  max-width: 600px;
+}
+
+
+
+

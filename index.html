@@ -6,23 +6,14 @@
 </head>
 <body>
 
-<!-- BOOT SCREEN -->
-<div id="boot-screen">
-  <p id="boot-text"></p>
+
+<!-- MAIN CONTENT -->
+<div class="ascii-wrapper">
+  <img src="assets/mt-title.gif" id="title" alt="Memory Terminal Title">
 </div>
 
-<!-- CONFIRM BUTTON (HIDDEN INITIALLY) -->
-<button id="confirm-button" onclick="confirmIdentity()" style="display:none;">
-  <img src="assets/icons/confirmid.png" class="button-icon">
-</button>
 
-<!-- MAIN CONTENT (HIDDEN INITIALLY) -->
-<div id="main-content" style="display:none;">
-  <div class="ascii-wrapper">
-    <img src="assets/mt-title.gif" id="title" alt="Memory Terminal Title">
-  </div>
-
-  <p>&gt; Access granted, Cariño 💖</p>
+  <p id="subheader">&gt; Access granted, Cariño 💖</p>
 
   <div class="panel">
     <a href="memories.html">
@@ -40,57 +31,22 @@
 <!-- AUDIO ELEMENT -->
 <audio id="bg-audio" src="audio/background.mp3" preload="auto"></audio>
 
-<!-- BOOT SEQUENCE SCRIPT -->
 <script>
-const bootLines = [
-  "> Initializing System...",
-  "> Scanning Device...",
-  "> Checking Identity...",
-  "> Accessing Memory Core...",
-  "> Ready!"
-];
+  // Play background music on page load
+  const bgAudio = document.getElementById('bg-audio');
+  bgAudio.volume = 0.5; // Set initial volume
+  bgAudio.play().catch(() => {
+    // Autoplay might be blocked, wait for user interaction
+    console.log("Autoplay blocked, waiting for user interaction...");
+  });
 
-let i = 0;  // line index
-let j = 0;  // char index
-let currentLine = "";
-const speed = 40; // typing speed in ms
-
-function typeBoot() {
-  if (i < bootLines.length) {
-    if (j < bootLines[i].length) {
-      currentLine += bootLines[i].charAt(j);
-      document.getElementById("boot-text").innerHTML = currentLine;
-      j++;
-      setTimeout(typeBoot, speed);
-    } else {
-      currentLine += "<br>";
-      i++;
-      j = 0;
-      setTimeout(typeBoot, 500);
+  // Also play music when user clicks anywhere (for autoplay fallback)
+  document.body.addEventListener('click', () => {
+    if (bgAudio.paused) {
+      bgAudio.play();
     }
-  } else {
-    // Boot finished → show confirm button
-    document.getElementById("confirm-button").style.display = "block";
-  }
-}
-
-// Start boot sequence once DOM is ready
-document.addEventListener('DOMContentLoaded', typeBoot);
-
-// CONFIRM BUTTON FUNCTION
-function confirmIdentity() {
-  document.getElementById("boot-screen").style.display = "none";
-  document.getElementById("confirm-button").style.display = "none";
-  document.getElementById("main-content").style.display = "block";
-
-  const bgAudio = document.getElementById("bg-audio");
-  if(bgAudio) {
-    bgAudio.loop = true;
-    bgAudio.play().catch(() => {
-      console.log("Autoplay blocked. User must interact to start audio.");
-    });
-  }
-}
+  });
 </script>
 
-<script src="js/mt.js"></script>
+</body>
+</html>

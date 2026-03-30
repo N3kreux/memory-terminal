@@ -154,3 +154,10 @@ button {
   box-shadow: none;              /* no glow effect */
   outline: none;                 /* no outline */
 }
+
+#subheader {
+  font-size: 2em;
+  color: #00ff9f;
+  margin-top: 10px;
+  text-shadow: 0px 0px 5px #00ffff;
+}

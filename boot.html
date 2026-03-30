@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Memory Terminal</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+<!-- BOOT SCREEN -->
+<div id="boot-screen">
+  <p id="boot-text"></p>
+</div>
+
+<!-- CONFIRM BUTTON (HIDDEN INITIALLY) -->
+<button id="confirm-button" onclick="confirmIdentity()" style="display:none;">
+  <img src="assets/icons/confirmid.png" class="button-icon">
+</button>
+
+<!-- BOOT SEQUENCE SCRIPT -->
+<script>
+const bootLines = [
+  "> Initializing System...",
+  "> Scanning Device...",
+  "> Checking Identity...",
+  "> Accessing Memory Core...",
+  "> Ready!"
+];
+
+let i = 0;  // line index
+let j = 0;  // char index
+let currentLine = "";
+const speed = 40; // typing speed in ms
+
+function typeBoot() {
+  if (i < bootLines.length) {
+    if (j < bootLines[i].length) {
+      currentLine += bootLines[i].charAt(j);
+      document.getElementById("boot-text").innerHTML = currentLine;
+      j++;
+      setTimeout(typeBoot, speed);
+    } else {
+      currentLine += "<br>";
+      i++;
+      j = 0;
+      setTimeout(typeBoot, 500);
+    }
+  } else {
+    // Boot finished → show confirm button
+    document.getElementById("confirm-button").style.display = "block";
+  }
+}
+
+// Start boot sequence once DOM is ready
+document.addEventListener('DOMContentLoaded', typeBoot);
+
+// CONFIRM BUTTON FUNCTION
+function confirmIdentity() {
+  document.getElementById("boot-screen").style.display = "none";
+  document.getElementById("confirm-button").style.display = "none";
+  document.getElementById("main-content").style.display = "block";
+
+  const bgAudio = document.getElementById("bg-audio");
+  if(bgAudio) {
+    bgAudio.loop = true;
+    bgAudio.play().catch(() => {
+      console.log("Autoplay blocked. User must interact to start audio.");
+    });
+  }
+}
+</script>
+
+<script src="js/mt.js"></script>

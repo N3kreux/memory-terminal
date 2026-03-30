@@ -6,14 +6,18 @@
 </head>
 <body>
 
+<!-- BOOT SCREEN -->
 <div id="boot-screen">
   <p id="boot-text"></p>
 </div>
 
+<!-- CONFIRM BUTTON (HIDDEN INITIALLY) -->
 <button id="confirm-button" onclick="confirmIdentity()" style="display:none;">
   <img src="assets/icons/confirmid.png" class="button-icon" alt="Confirm Identity">
+  CONFIRM IDENTITY
 </button>
 
+<!-- MAIN CONTENT (HIDDEN INITIALLY) -->
 <div id="main-content" style="display:none;">
   <div class="ascii-wrapper">
     <img src="assets/mt-title.gif" id="title" alt="Memory Terminal Title">
@@ -23,23 +27,22 @@
 
   <div class="panel">
     <a href="memories.html">
-       <img src="assets/icons/icon.png" alt="Letter Icon" class="icon">[1] Memories</a> // include this code for icons
+      <img src="assets/icons/icon.png" alt="Letter Icon" class="icon">[1] Memories
+    </a>
     <a href="lonely.html">[2] Open When Lonely</a>
     <a href="roadtrip.html">[3] Roadtrip Mode</a>
     <a href="secret.html">[4] Secret Message</a>
     <a href="logs.html">[5] LOVER'S LOGS</a>
   </div>
 
-
   <p>&gt; Or type command: <strong>love_you</strong></p>
 </div>
 
-<!-- AUDIO ELEMENTS -->
+<!-- AUDIO ELEMENT -->
 <audio id="bg-audio" src="audio/background.mp3" preload="auto"></audio>
 
-<!-- SCRIPTS -->
+<!-- BOOT SEQUENCE SCRIPT -->
 <script>
-// Boot sequence typing
 const bootLines = [
   "> Initializing System...",
   "> Scanning Device...",
@@ -48,23 +51,16 @@ const bootLines = [
   "> Ready!"
 ];
 
-let i = 0;  // line
-let j = 0;  // char
+let i = 0;  // line index
+let j = 0;  // char index
 let currentLine = "";
-const speed = 40;
+const speed = 40; // typing speed in ms
 
 function typeBoot() {
-  const typeAudio = document.getElementById("type-sound"); // optional typing sound
   if (i < bootLines.length) {
     if (j < bootLines[i].length) {
       currentLine += bootLines[i].charAt(j);
       document.getElementById("boot-text").innerHTML = currentLine;
-
-      if(typeAudio) {
-        typeAudio.currentTime = 0;
-        typeAudio.play().catch(() => {});
-      }
-
       j++;
       setTimeout(typeBoot, speed);
     } else {
@@ -74,14 +70,28 @@ function typeBoot() {
       setTimeout(typeBoot, 500);
     }
   } else {
-    // Boot sequence finished → show confirm button
-    const confirmBtn = document.getElementById("confirm-button");
-    confirmBtn.style.display = "block";   // make button visible
+    // Boot finished → show confirm button
+    document.getElementById("confirm-button").style.display = "block";
+  }
+}
+
+// Start boot sequence once DOM is ready
+document.addEventListener('DOMContentLoaded', typeBoot);
+
+// CONFIRM BUTTON FUNCTION
+function confirmIdentity() {
+  document.getElementById("boot-screen").style.display = "none";
+  document.getElementById("confirm-button").style.display = "none";
+  document.getElementById("main-content").style.display = "block";
+
+  const bgAudio = document.getElementById("bg-audio");
+  if(bgAudio) {
+    bgAudio.loop = true;
+    bgAudio.play().catch(() => {
+      console.log("Autoplay blocked. User must interact to start audio.");
+    });
   }
 }
 </script>
 
 <script src="js/mt.js"></script>
-
-</body>
-</html>

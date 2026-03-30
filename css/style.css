@@ -151,4 +151,8 @@ button:hover {
   cursor: pointer;
 }
 
+#confirm-button {
+  display: none; /* only temporary, JS should change this */
+  opacity: 0;    /* optional fade-in */
+}
 

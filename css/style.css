@@ -144,7 +144,7 @@ button:hover {
   margin-right: 8px;      /* space between icon and text */
 }
 
-#button-icon {
+#confirm-button {
   display: block;           /* ensures it's a block element */
   margin: 30px auto 0 auto; /* centers horizontally, add spacing above if needed */
   padding: 12px 24px;       /* button size */

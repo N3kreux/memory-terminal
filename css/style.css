@@ -55,20 +55,14 @@ body::before {
   pointer-events: none;
 }
 
-/* Wrapper for ASCII */
-.ascii-wrapper {
-  width: 100%;
-  overflow-x: auto;       /* allows horizontal scrolling on mobile */
-  padding-left: 10px;     /* some space from the edge */
-  background-color: #0a0a0f; /* optional terminal background */
-}
 
 #title {
-  display: block;
-  margin: 40px auto;
-  max-width: 90%;
-  height: auto;
-  image-rendering: pixelated; /* optional for retro feel */
+  display: block;          /* ensures it’s treated like a block element */
+  margin: 0;               /* removes any default spacing */
+  margin-bottom: 20px;     /* adjust space below title if needed */
+  max-width: 100%;         /* ensures it won’t overflow */
+  height: auto;            /* maintains GIF aspect ratio */
+  float: left;             /* sticks it to the left */
 }
 
 @keyframes flicker {

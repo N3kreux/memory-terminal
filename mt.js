@@ -10,7 +10,7 @@ function bootSequence() {
       clearInterval(interval);
       
       // Show the confirm button after boot
-      document.getElementById('confirm-button').style.display = 'block';
+      document.getElementById('button-icon').style.display = 'block';
     }
   }, 50);
 }

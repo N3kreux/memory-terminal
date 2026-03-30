@@ -80,12 +80,9 @@ body::before {
 
 button {
   background-color: transparent;
-  border: 2px solid #00ffcc;
-  color: #00ffcc;
   padding: 10px 20px;
   font-family: 'Share Tech Mono', monospace;
   cursor: pointer;
-  box-shadow: 0 0 10px #00ffcc;
   margin-top: 20px;
 }
 

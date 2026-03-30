@@ -13,6 +13,17 @@ a {
   margin: 5px 0;
   display: block;
 }
+a:hover {
+  color: #00ffff;
+  text-shadow: 0 0 10px #00ffff;
+}
+
+.panel {
+  border: 2px solid #00ffcc;
+  padding: 15px;
+  margin: 10px 0;
+  box-shadow: 0 0 10px #00ffcc;
+}
 
 /* Glitch animation for headers */
 @keyframes glitch {
@@ -127,6 +138,19 @@ button {
 #confirm-button {
   display: block;
   margin: 20px auto 0 auto;
-  padding: 12px; /* makes clickable area bigger */
+  padding: 12px;          /* bigger clickable area */
   cursor: pointer;
+  
+  background-color: transparent; /* no background */
+  border: none;                  /* remove default border */
+  outline: none;                 /* remove focus outline */
+  box-shadow: none;              /* remove any glow shadow */
+}
+
+#confirm-button:hover,
+#confirm-button:focus,
+#confirm-button:active {
+  background-color: transparent; /* stays transparent on hover/click */
+  box-shadow: none;              /* no glow effect */
+  outline: none;                 /* no outline */
 }

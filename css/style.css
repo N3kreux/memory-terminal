@@ -63,33 +63,25 @@ body::before {
   background-color: #0a0a0f; /* optional terminal background */
 }
 
-/* ASCII text */
-.ascii-title {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 0.8rem;      /* readable size */
-  line-height: 1;         /* tight lines */
-  white-space: pre;       /* preserves all spaces */
-  color: #ff00ff;
-  text-shadow: 2px 0 #00ffff, -2px 0 #ff00ff, 0 0 5px #ff00ff;
-  animation: glitch 1s infinite;
-  text-align: left;       /* left align for retro terminal look */
+#title {
+  display: block;
+  margin: 40px auto;
+  max-width: 90%;
+  height: auto;
+  image-rendering: pixelated; /* optional for retro feel */
 }
 
-/* Mobile adjustment */
-@media (max-width: 600px) {
-  .ascii-title {
-    font-size: 0.6rem;     /* smaller font for phones */
-  }
+@keyframes flicker {
+  0% { opacity: 1; }
+  5% { opacity: 0.8; }
+  10% { opacity: 1; }
+  15% { opacity: 0.6; }
+  20% { opacity: 1; }
+  100% { opacity: 1; }
 }
 
-/* Glitch animation */
-@keyframes glitch {
-  0%   { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
-  20%  { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
-  40%  { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
-  60%  { text-shadow: -2px 0 #ff00ff, 2px 0 #00ffff; }
-  80%  { text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff; }
-  100% { text-shadow: 0 0 #ff00ff; }
+#title {
+  animation: flicker 3s infinite;
 }
 
 button {

@@ -152,7 +152,11 @@ button:hover {
 }
 
 #confirm-button {
+  position: relative;   /* or absolute with correct parent */
+  z-index: 10;          /* higher than boot overlay */
+}
+
+#confirm-button {
   display: none; /* only temporary, JS should change this */
-  opacity: 0;    /* optional fade-in */
 }
 

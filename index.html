@@ -54,7 +54,7 @@ let currentLine = "";
 const speed = 40;
 
 function typeBoot() {
-  const typeAudio = document.getElementById("type-sound"); // make sure audio exists now
+  const typeAudio = document.getElementById("type-sound"); // optional typing sound
   if (i < bootLines.length) {
     if (j < bootLines[i].length) {
       currentLine += bootLines[i].charAt(j);
@@ -62,9 +62,9 @@ function typeBoot() {
 
       if(typeAudio) {
         typeAudio.currentTime = 0;
-        typeAudio.play().catch(() => {}); // ignore autoplay errors
+        typeAudio.play().catch(() => {});
       }
-      
+
       j++;
       setTimeout(typeBoot, speed);
     } else {
@@ -74,24 +74,11 @@ function typeBoot() {
       setTimeout(typeBoot, 500);
     }
   } else {
-    document.getElementById("auth-screen").style.display = "block";
-  }
-}
-
-typeBoot();
-
-// Confirm identity function
-function confirmIdentity() {
-  document.getElementById("boot-screen").style.display = "none";
-  document.getElementById("auth-screen").style.display = "none";
-  document.getElementById("main-content").style.display = "block";
-
-   const bgAudio = document.getElementById("bg-audio");
-  if(bgAudio) {
-    bgAudio.loop = true;
-    bgAudio.play().catch(() => {
-      console.log("Autoplay blocked. User must interact to start audio.");
-    });
+    // Boot sequence finished → show confirm button
+    const confirmBtn = document.getElementById("confirm-button");
+    confirmBtn.style.display = "block";   // make button visible
+    confirmBtn.style.opacity = 0;         // start invisible for fade-in
+    setTimeout(() => { confirmBtn.style.transition = "opacity 0.8s ease-in"; confirmBtn.style.opacity = 1; }, 50);
   }
 }
 </script>

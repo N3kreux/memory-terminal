@@ -151,3 +151,9 @@ button:hover {
   cursor: pointer;
 }
 
+.button-icon {
+  width: 24px;
+  height: 24px;
+  vertical-align: middle;
+  margin-right: 8px;
+}

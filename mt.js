@@ -42,11 +42,5 @@ function bootSequence() {
 }
 }
 
-if (sessionStorage.getItem("booted")) {
-  window.location.href = "index.html";
-} else {
-  sessionStorage.setItem("booted", "true");
-}
-
 // Start sequence after DOM loads
 document.addEventListener('DOMContentLoaded', bootSequence);

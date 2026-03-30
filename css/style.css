@@ -144,17 +144,11 @@ button:hover {
   margin-right: 8px;      /* space between icon and text */
 }
 
-button {
-  padding: 4px; /* shrink button around icon */
-  background: none;
-  border: none;
+#confirm-button {
+  display: block;           /* ensures it's a block element */
+  margin: 30px auto 0 auto; /* centers horizontally, add spacing above if needed */
+  padding: 12px 24px;       /* button size */
   cursor: pointer;
 }
-
-button:hover .button-icon {
-  filter: brightness(1.5); /* simple glow effect */
-  transform: scale(1.1);   /* slight zoom */
-}
-
 
 

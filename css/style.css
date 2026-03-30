@@ -137,6 +137,24 @@ button:hover {
   max-width: 600px;
 }
 
+.icon {
+  width: 24px;           /* how big it appears on page */
+  height: 24px;          /* keep aspect ratio */
+  vertical-align: middle; /* aligns with text */
+  margin-right: 8px;      /* space between icon and text */
+}
+
+button {
+  padding: 4px; /* shrink button around icon */
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:hover .button-icon {
+  filter: brightness(1.5); /* simple glow effect */
+  transform: scale(1.1);   /* slight zoom */
+}
 
 
 

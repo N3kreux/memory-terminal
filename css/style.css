@@ -145,14 +145,8 @@ button:hover {
 }
 
 #confirm-button {
-  display: block;           /* ensures it's a block element */
-  margin: 30px auto 0 auto; /* centers horizontally, add spacing above if needed */
-  padding: 12px 24px;       /* button size */
+  display: block;
+  margin: 20px auto 0 auto;
+  padding: 12px; /* makes clickable area bigger */
   cursor: pointer;
-}
-.button-icon {
-  width: 24px;
-  height: 24px;
-  vertical-align: middle;
-  margin-right: 8px;
 }

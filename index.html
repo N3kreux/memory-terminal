@@ -77,7 +77,6 @@ function typeBoot() {
     // Boot sequence finished → show confirm button
     const confirmBtn = document.getElementById("confirm-button");
     confirmBtn.style.display = "block";   // make button visible
-    confirmBtn.style.opacity = 0;         // start invisible for fade-in
     setTimeout(() => { confirmBtn.style.transition = "opacity 0.8s ease-in"; confirmBtn.style.opacity = 1; }, 50);
   }
 }

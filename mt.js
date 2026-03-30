@@ -8,9 +8,6 @@ function bootSequence() {
     i++;
     if (i >= message.length) {
       clearInterval(interval);
-      
-      // Show the confirm button after boot
-      document.getElementById('confirm-button').style.display = 'block';
     }
   }, 50);
 }

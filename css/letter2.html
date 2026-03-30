@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log 001</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!--Audio Elements-->
+<audio id="log-music" loop>
+  <source src="audio/logs-music.mp3" type="audio/mpeg">
+</audio>
+
+<h2>LOG 002 – BATTLING BUGS (3/29/2026)</h2>
+
+<p id="typed-text" class="log-text"></p>
+
+<script>
+// Typing effect
+const text = `LOVER'S LOG 002
+Today is day 2 of building and refining your website.
+
+I am working on adding ambient music to the LOVER'S LOGS portion of the site. I have never felt
+so dedicated to something or been able to work through multiple crashes and errors with a smile but you 
+give me a great purpose. Knowing that I am doing this for you makes all the mistakes and lessons
+worth it. I hope you really like it.
+
+The music is working on the individual logs but it is not playing in the main menu of the logs! 
+Its crazy how one small tweak can render the entire page or site useless lol.
+I still find it fun though and at least it gives me something to do besides sitting in front
+of the tv, gorging myself on popcorn and I am learning a lot in the process.
+
+ChatGPT has been my trusty companion in exterminating these bugs. If I have spent a long time 
+searching for a little mistake through every single line of code and still can't find it, I call it in 
+for reinforcements. It makes me feel like a super cool hacker! If you are interested at some point, I 
+can walk you through the steps in person that I took to create this.
+
+FINALLY! At 12:30PM today I finally got the gosh darn music to play correctly on both sites! I need
+a break, but I still have a lot of sections to work through and a lot more planning to do.
+
+Love you!`;
+
+let index = 0;
+const speed = 30; // typing speed
+
+function typeWriter() {
+  if (index < text.length) {
+    document.getElementById("typed-text").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, speed);
+  } else {
+    // Add END OF LOG when typing is complete
+    document.getElementById("typed-text").innerHTML += "\n\n[END OF LETTER]";
+  }
+}
+
+// Start typing when page loads
+window.onload = typeWriter;
+</script>
+
+<a href="letters.html">← Back to Letters</a>
+
+<script>
+// Background music
+const music = document.getElementById("log-music");
+
+// Check if music was already playing
+if (localStorage.getItem("musicPlaying") === "true") {
+  music.currentTime = localStorage.getItem("musicTime") || 0;
+  music.play();
+}
+
+// Start music on first click
+document.body.addEventListener("click", () => {
+  if (!music.paused) return;
+  music.play();
+  localStorage.setItem("musicPlaying", "true");
+});
+
+// Save playback time before leaving page
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("musicTime", music.currentTime);
+});
+</script>
+
+</body>
+</html>

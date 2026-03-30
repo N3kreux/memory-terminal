@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Captain's Logs</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<audio id="log-music" loop>
+  <source src="audio/logs-music.mp3" type="audio/mpeg">
+</audio>
+
+<h1>CAPTAIN'S LOGS</h1>
+
+<div class="letter-list">
+  <a href="letter1.html">LETTER 001 – INITIALIZATION (3/28/2026)</a><br>
+  <a href="letter2.html">LETTER 002 – BATTLING BUGS (3/29/2026)</a><br>
+  <a href="letter3.html">LETTER 003 – Why You Matter</a><br>
+  <a href="letter4.html">LETTER 004 – The Future</a><br>
+</div>
+
+<a href="index.html">← Return</a>
+
+<p style="color: #00ff9f;">Click Anywhere To Start Lover's Logs Music...</p>
+
+<script>
+// Get the audio element
+const music = document.getElementById("log-music");
+
+// Web Audio API for fade-in
+let audioCtx, source, gainNode;
+
+function startMusicFadeIn() {
+  if (music.paused) {
+    // Create audio context if not already created
+    if (!audioCtx) {
+      audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      source = audioCtx.createMediaElementSource(music);
+      gainNode = audioCtx.createGain();
+      gainNode.gain.value = 0; // start silent
+      source.connect(gainNode).connect(audioCtx.destination);
+    }
+
+    music.play(); // start playing
+    // Gradually increase volume
+    let volume = 0;
+    const fadeDuration = 3000; // 3 seconds
+    const step = 0.05;
+    const interval = fadeDuration / (1 / step);
+
+    const fade = setInterval(() => {
+      if (volume < 1) {
+        volume += step;
+        gainNode.gain.setValueAtTime(Math.min(volume,1), audioCtx.currentTime);
+      } else {
+        clearInterval(fade);
+      }
+    }, interval);
+    
+    localStorage.setItem("musicPlaying", "true");
+  }
+}
+
+// Check if music was already playing
+if (localStorage.getItem("musicPlaying") === "true") {
+  // Resume music immediately with fade
+  startMusicFadeIn();
+}
+
+// Start music on first click anywhere
+document.body.addEventListener("click", () => {
+  startMusicFadeIn();
+});
+
+// Save playback time before leaving page
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("musicTime", music.currentTime);
+});
+</script>
+
+</body>
+</html>

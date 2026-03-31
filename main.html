@@ -31,6 +31,24 @@
 
 <!-- AUDIO ELEMENT -->
 <audio id="bg-audio" src="audio/background.mp3" preload="auto"></audio>
-
+<script>
+  // Play background audio when main page loads
+  window.addEventListener('DOMContentLoaded', () => {
+    const bgAudio = document.getElementById('bg-audio');
+    if (bgAudio) {
+      bgAudio.loop = true; // loop the music
+      // Attempt to play; may require user interaction
+      bgAudio.play().catch(() => {
+        console.log("Autoplay blocked. User must interact to start audio.");
+      });
+    }
+  });
+  document.addEventListener('click', () => {
+  const bgAudio = document.getElementById('bg-audio');
+  if (bgAudio && bgAudio.paused) {
+    bgAudio.play();
+  }
+}, { once: true }); // only trigger once
+</script>
 </body>
 </html>

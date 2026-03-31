@@ -35,7 +35,6 @@ window.addEventListener('DOMContentLoaded', () => {
   const bgAudio = document.getElementById('bg-audio');
   if (bgAudio) {
     bgAudio.loop = true;          // loop music indefinitely
-    bgAudio.volume = 0.5;         // adjust volume (optional)
 
     // Attempt to play immediately
     bgAudio.play().catch(() => {

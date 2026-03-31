@@ -6,49 +6,51 @@
 </head>
 <body>
 
-
 <!-- MAIN CONTENT -->
 <div class="ascii-wrapper">
   <img src="assets/mt-title.gif" id="title" alt="Memory Terminal Title">
 </div>
 
+<p id="subheader">&gt; Access granted, Cariño 💖</p>
 
-  <p id="subheader">&gt; Access granted, Cariño 💖</p>
-
-  <div class="panel">
-    <a href="memories.html">
-      <img src="assets/icons/icon.png" class="icon">[1] MEMORIES
-    </a>
-    <a href="lonely.html">[2] OPEN WHEN LONE</a>
-    <a href="roadtrip.html">[3] ROADTRIP MODE</a>
-    <a href="secret.html">[4] SECRET MESSAGE</a>
-    <a href="logs.html">[5] LOVER'S LOGS</a>
-    <a href="letters.html">[6] LETTERS</a>
-  </div>
-
-  <p>&gt; Or type command: <strong>love_you</strong></p>
+<div class="panel">
+  <a href="memories.html">
+    <img src="assets/icons/icon.png" class="icon">[1] MEMORIES
+  </a>
+  <a href="lonely.html">[2] OPEN WHEN LONE</a>
+  <a href="roadtrip.html">[3] ROADTRIP MODE</a>
+  <a href="secret.html">[4] SECRET MESSAGE</a>
+  <a href="logs.html">[5] LOVER'S LOGS</a>
+  <a href="letters.html">[6] LETTERS</a>
 </div>
+
+<p>&gt; Or type command: <strong>love_you</strong></p>
 
 <!-- AUDIO ELEMENT -->
 <audio id="bg-audio" src="audio/background.mp3" preload="auto"></audio>
+
+<!-- AUDIO SCRIPT -->
 <script>
-  // Play background audio when main page loads
-  window.addEventListener('DOMContentLoaded', () => {
-    const bgAudio = document.getElementById('bg-audio');
-    if (bgAudio) {
-      bgAudio.loop = true; // loop the music
-      // Attempt to play; may require user interaction
-      bgAudio.play().catch(() => {
-        console.log("Autoplay blocked. User must interact to start audio.");
-      });
-    }
-  });
-  document.addEventListener('click', () => {
+window.addEventListener('DOMContentLoaded', () => {
   const bgAudio = document.getElementById('bg-audio');
-  if (bgAudio && bgAudio.paused) {
-    bgAudio.play();
+  if (bgAudio) {
+    bgAudio.loop = true;          // loop music indefinitely
+    bgAudio.volume = 0.5;         // adjust volume (optional)
+
+    // Attempt to play immediately
+    bgAudio.play().catch(() => {
+      console.log("Autoplay blocked. Waiting for user interaction.");
+    });
+
+    // Fallback: start music on first click anywhere
+    document.addEventListener('click', () => {
+      if (bgAudio.paused) {
+        bgAudio.play();
+      }
+    }, { once: true });
   }
-}, { once: true }); // only trigger once
+});
 </script>
+
 </body>
 </html>

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Log 001</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!--Audio Elements-->
+<audio id="log-music" loop>
+  <source src="audio/logs-music.mp3" type="audio/mpeg">
+</audio>
+
+<h2>LOG 004 – THE FUTURE (4/3/2026)</h2>
+
+<p id="typed-text" class="log-text"></p>
+
+<script>
+// Typing effect
+const text = `LOVERS LOG 004
+My dearest Cariño,
+
+Today is the finaly day of revisions for the site and I can't wait to give it to you. I had help from Mom and Amber to make this so special.
+I really hope that it doesn't glitch out or anything when I actually give it to you because I have been endlessly testing everything
+to make sure its all perfect for your special day.
+
+I had to take a few days in between to stop working on it because you were off and I couldn't risk you seeing it. And since you 
+are off for the next three days, today is all I have left.
+
+Now that I have everything done and I am writing this final log, I can't help but think about how much we have gone through since 
+we decided to start dating. Every day has been a blessing and I am so grateful to have such a special person in my life that loves 
+so deeply and cares so much while also allowing me to grow and figure myself out at my own pace. I am so lucky to have found you
+and made you feel that I am deserving enough to be with you. 
+
+My heart grows fonder for you and our babies every day. I couldn't imagine my life without any of you at this point. I also want
+to thank you for welcoming Otis into your life and home with open arms. We have both gone through so much so we both require a bit 
+of patience and understanding, but we promise we love you all so much. I truly hope your birthday is as special as you are and that
+you know how much you are loved by all of us. 
+
+You and me, together always,
+Conde ❤️`;
+
+let index = 0;
+const speed = 30; // typing speed
+
+function typeWriter() {
+  if (index < text.length) {
+    document.getElementById("typed-text").innerHTML += text.charAt(index);
+    index++;
+    setTimeout(typeWriter, speed);
+  } else {
+    // Add END OF LOG when typing is complete
+    document.getElementById("typed-text").innerHTML += "\n\n[END OF LETTER]";
+  }
+}
+
+// Start typing when page loads
+window.onload = typeWriter;
+</script>
+
+<a href="letters.html">← Back to Letters</a>
+
+<script>
+// Background music
+const music = document.getElementById("log-music");
+
+// Check if music was already playing
+if (localStorage.getItem("musicPlaying") === "true") {
+  music.currentTime = localStorage.getItem("musicTime") || 0;
+  music.play();
+}
+
+// Start music on first click
+document.body.addEventListener("click", () => {
+  if (!music.paused) return;
+  music.play();
+  localStorage.setItem("musicPlaying", "true");
+});
+
+// Save playback time before leaving page
+window.addEventListener("beforeunload", () => {
+  localStorage.setItem("musicTime", music.currentTime);
+});
+</script>
+
+</body>
+</html>
